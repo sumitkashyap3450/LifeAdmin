@@ -112,6 +112,11 @@ Avoid storing sensitive personal information in this demo application.
 GitHub: sumitkashyap3450
 
 ⸻
+🌐 Live Demo
+
+Try LifeAdmin here: https://lifeadmin-ts13.onrender.com
+
+Experience the application live and explore its task management features.
 
 ⭐ If you find this project useful, consider giving it a star!
 
