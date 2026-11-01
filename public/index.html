@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6fa">
+  <title>LifeAdmin — Your life, in order</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="LifeAdmin home">
+        <span class="brand-mark"><span></span><span></span><span></span><span></span></span>
+        <span>lifeadmin<span class="brand-dot">.</span></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-item active" data-view="all"><span class="nav-icon">▦</span> Overview <span class="nav-count" id="navAllCount">0</span></button>
+        <button class="nav-item" data-view="today"><span class="nav-icon">◷</span> Due today</button>
+        <button class="nav-item" data-view="upcoming"><span class="nav-icon">▤</span> Upcoming</button>
+        <button class="nav-item" data-view="completed"><span class="nav-icon">✓</span> Completed</button>
+      </nav>
+      <div class="sidebar-divider"></div>
+      <div class="workspace-label">CATEGORIES</div>
+      <nav class="nav-list category-nav" aria-label="Task categories">
+        <button class="nav-item" data-category="Documents"><span class="category-dot lilac"></span> Documents</button>
+        <button class="nav-item" data-category="Education"><span class="category-dot blue"></span> Education</button>
+        <button class="nav-item" data-category="Finance"><span class="category-dot green"></span> Finance</button>
+        <button class="nav-item" data-category="Work"><span class="category-dot orange"></span> Work</button>
+        <button class="nav-item" data-category="Personal"><span class="category-dot pink"></span> Personal</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-icon">✦</div>
+          <strong>Small steps add up.</strong>
+          <p>Keep your important dates in one calm place.</p>
+        </div>
+        <div class="profile-row">
+          <div class="avatar">S</div>
+          <div class="profile-copy"><strong>My workspace</strong><span>Personal account</span></div>
+          <span class="profile-menu">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open navigation">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumbCurrent">Overview</strong></div>
+        <div class="topbar-actions">
+          <div class="today-chip"><span class="tiny-sun">✳</span><span id="todayLabel">Today</span></div>
+          <button class="icon-button" id="reminderButton" aria-label="Show reminders" title="Show reminders">♧<span class="notification-dot" id="notificationDot"></span></button>
+          <button class="primary-button top-add" id="addTaskTop"><span>＋</span> New task</button>
+        </div>
+      </header>
+
+      <div class="page-wrap">
+        <section class="welcome-row">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> YOUR PERSONAL COMMAND CENTRE</div>
+            <h1 id="greeting">A little more <em>in order.</em></h1>
+            <p class="subtitle">Keep track of the things that matter, one task at a time.</p>
+          </div>
+          <div class="welcome-art" aria-hidden="true">
+            <div class="art-sun"></div><div class="art-card art-card-back"></div>
+            <div class="art-card art-card-front"><div class="art-check">✓</div><div class="art-lines"><i></i><i></i><i></i></div></div>
+            <div class="art-spark spark-one">✦</div><div class="art-spark spark-two">✳</div>
+          </div>
+        </section>
+
+        <section class="stats-grid" aria-label="Task summary">
+          <article class="stat-card stat-main">
+            <div class="stat-top"><span>Open tasks</span><span class="stat-icon purple-icon">▦</span></div>
+            <div class="stat-value" id="openCount">0</div>
+            <div class="stat-foot"><span class="stat-bullet purple-bullet"></span><span id="openCaption">Things on your plate</span></div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span>Due today</span><span class="stat-icon amber-icon">◷</span></div>
+            <div class="stat-value" id="dueTodayCount">0</div>
+            <div class="stat-foot"><span class="stat-bullet amber-bullet"></span><span>Give these a little attention</span></div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span>Completed</span><span class="stat-icon green-icon">✓</span></div>
+            <div class="stat-value" id="completedCount">0</div>
+            <div class="stat-foot"><span class="stat-bullet green-bullet"></span><span id="completionCaption">Every step counts</span></div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-top"><span>Overdue</span><span class="stat-icon rose-icon">!</span></div>
+            <div class="stat-value" id="overdueCount">0</div>
+            <div class="stat-foot"><span class="stat-bullet rose-bullet"></span><span>Past their due date</span></div>
+          </article>
+        </section>
+
+        <section class="progress-panel">
+          <div class="progress-copy">
+            <div class="progress-title">Your momentum <span class="progress-spark">✦</span></div>
+            <p id="progressMessage">Every task you finish is progress.</p>
+          </div>
+          <div class="progress-meter-wrap">
+            <div class="progress-label"><span>Completion rate</span><strong id="completionRate">0%</strong></div>
+            <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+          </div>
+          <div class="progress-illustration" aria-hidden="true"><span>✧</span><div class="mini-plant"><i></i><i></i><b></b></div></div>
+        </section>
+
+        <section class="task-section">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">STAY ON TOP OF IT</div>
+              <h2 id="listHeading">Your tasks <span id="listCount" class="heading-count">0</span></h2>
+            </div>
+            <button class="primary-button" id="addTaskMain"><span>＋</span> Add a task</button>
+          </div>
+          <div class="toolbar">
+            <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search tasks..." aria-label="Search tasks"><kbd>⌘ K</kbd></label>
+            <div class="toolbar-right">
+              <label class="select-wrap"><span>↕</span><select id="sortSelect" aria-label="Sort tasks"><option value="due">Due date</option><option value="created">Recently added</option><option value="priority">Priority</option><option value="title">Name A–Z</option></select></label>
+              <button class="filter-button" id="filterButton"><span>☷</span> Filters <span class="filter-count" id="filterCount" hidden>0</span></button>
+            </div>
+          </div>
+          <div class="filter-panel" id="filterPanel" hidden>
+            <label>Status <select id="statusFilter"><option value="all">All statuses</option><option>Pending</option><option>In Progress</option><option>Completed</option></select></label>
+            <label>Priority <select id="priorityFilter"><option value="all">All priorities</option><option>High</option><option>Medium</option><option>Low</option></select></label>
+            <label>Category <select id="categoryFilter"><option value="all">All categories</option><option>Personal</option><option>Documents</option><option>Education</option><option>Finance</option><option>Work</option><option>Health</option><option>Other</option></select></label>
+            <button class="text-button" id="clearFilters">Clear filters</button>
+          </div>
+          <div class="task-list" id="taskList" aria-live="polite">
+            <div class="loading-state">Getting your tasks ready…</div>
+          </div>
+          <div class="list-footer"><span id="listFooterText">Your plans, all in one place.</span><button class="text-button" id="showAllButton" hidden>Show all tasks →</button></div>
+        </section>
+        <footer class="page-footer"><span>Made for a little less mental clutter.</span><span><i class="status-indicator"></i> Your data is saved on this server</span></footer>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="taskModal" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header"><div><div class="eyebrow">MAKE SPACE FOR WHAT MATTERS</div><h2 id="modalTitle">Create a task</h2></div><button class="close-button" id="closeModal" aria-label="Close dialog">×</button></div>
+      <form id="taskForm">
+        <input type="hidden" id="taskId">
+        <label class="field full-field">Task name <span class="required">*</span><input id="taskTitle" name="title" maxlength="120" placeholder="e.g. Submit university documents" required></label>
+        <div class="form-grid">
+          <label class="field">Category<select id="taskCategory"><option>Personal</option><option>Documents</option><option>Education</option><option>Finance</option><option>Work</option><option>Health</option><option>Other</option></select></label>
+          <label class="field">Priority<select id="taskPriority"><option>Low</option><option selected>Medium</option><option>High</option></select></label>
+          <label class="field">Due date<input id="taskDueDate" type="date"></label>
+          <label class="field">Remind me on<input id="taskReminderDate" type="date"></label>
+          <label class="field">Status<select id="taskStatus"><option>Pending</option><option>In Progress</option><option>Completed</option></select></label>
+          <label class="field">Depends on<select id="taskDependsOn"><option value="">No prerequisite</option></select></label>
+        </div>
+        <label class="field full-field">Notes <span class="optional">(optional)</span><textarea id="taskNotes" rows="3" maxlength="2000" placeholder="Add a detail you'll want to remember…"></textarea></label>
+        <div class="form-hint" id="dependencyHint">If this task depends on another one, choose it here.</div>
+        <div class="form-error" id="formError" role="alert"></div>
+        <div class="modal-actions"><button type="button" class="secondary-button" id="cancelModal">Cancel</button><button type="submit" class="primary-button" id="saveTaskButton">Save task <span>→</span></button></div>
+      </form>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="reminder-popover" id="reminderPopover" hidden>
+    <div class="popover-head"><strong>On your radar</strong><button id="closeReminder" aria-label="Close reminders">×</button></div>
+    <p class="popover-sub">Tasks with reminders today or earlier.</p>
+    <div id="reminderList"></div>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
